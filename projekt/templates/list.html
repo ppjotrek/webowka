@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Baza leków{% endblock %}
+
+{% block content %}
+    <h3>Baza przypisanych przez Ciebie leków</h3>
+    <hr>
+    <table class="table table-hover table-borderless">
+        <thead>
+            <tr>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Substancja aktywna</th>
+                <th scope="col">Szczegóły</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for drug in drugs %}
+        <tr>
+            <td>{{ drug.drug_name }}</td>
+            <td>{{ drug.main_active_substance }}</td>
+            <td><a href="{% url 'drug' drug.id %}">Szczegóły</a></td>
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+    <div class="link-button">
+        <i class="fa-solid fa-plus"></i>
+        <a href="{% url 'edit_drugs' %}">Dodaj nowy lek</a>
+    </div>
+    <style>
+        .pagination-centering {
+            text-align: center;
+        }
+
+        .pagination {
+            display: inline-block;
+        }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+        }
+
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+            border: 1px solid #4CAF50;
+        }
+
+        .pagination a:hover:not(.active) {background-color: #ddd;}
+    </style>
+    <div class="pagination-centering">
+        <div class="pagination">
+            <span class="step-links">
+
+                <span class="current">
+                    Strona {{ drugs.number }} z {{ drugs.paginator.num_pages }}.
+                </span>
+                <br>
+
+                {% if drugs.has_previous %}
+                    <a href="?page=1">&laquo; pierwsza</a>
+                    <a href="?page={{ drugs.previous_page_number }}">poprzednia</a>
+                {% endif %}
+
+                {% if drugs.has_next %}
+                    <a href="?page={{ drugs.next_page_number }}">następna</a>
+                    <a href="?page={{ drugs.paginator.num_pages }}">ostatnia &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+{% endblock %}

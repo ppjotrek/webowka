@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Usuń pacjenta{% endblock %}
+{% block content %}
+
+    <h1>Usuń pacjenta</h1>
+
+    <p>Czy jesteś pewny, że chcesz usunąć profil pacjenta: {{ patient.name }} {{ patient.surname }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Usuń">
+        <br>
+        <br>
+        <a href="{% url 'patient' patient.id %}">Wróć</a>
+    </form>
+    
+{% endblock %}

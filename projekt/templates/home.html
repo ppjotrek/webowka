@@ -1,18 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAIN</title>
-</head>
-<body>
-    <div class="content">
-        <h1>Strona główna</h1>
-        <h3>Leki:</h3>
-        {% for drug in drugs %}
-            <p>{{ drug }}</p>
-        {% endfor %}
-        <a href="{% url 'logout' %}">logout</a>
+{% extends 'base.html' %}
+{% block title %}Main{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="welcome">
+            <h1>Twój panel zarzadzania</h1>
+            <p>Witaj w aplikacji webowej, która pomoże Ci w zarządzaniu historią podawanych Twoim pacjentom leków.</p>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Lista pacjentów</h5>
+                        <p class="card-text">Zobacz listę Twoich pacjentów oraz informacje o ich danych.</p>
+                        <a href="{% url 'patients' %}" class="btn btn-primary">Przejdź do listy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Baza leków</h5>
+                        <p class="card-text">Zobacz całą bazę leków oraz substancji aktywnych dodanych przez Ciebie.</p>
+                        <a href="{% url 'list' %}" class="btn btn-primary">Przejdź do bazy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Leczenie</h5>
+                        <p class="card-text">Przypisz lek pacjentowi lub zmodyfikuj plan leczenia wybranego pacjenta</p>
+                        <a href="{% url 'treatment' %}" class="btn btn-primary">Zaktualizuj leczenie</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Zarejestruj pacjenta</h5>
+                        <p class="card-text">Dodaj dane osobowe nowego pacjenta, który zostanie zapisany w bazie danych.</p>
+                        <a href="{% url 'register_patient' %}" class="btn btn-primary">Zarejestruj</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Zmodyfikuj bazę leków</h5>
+                        <p class="card-text">Zmodyfikuj bazę leków - uaktualnij składy leków, dodaj lub usuń leki</p>
+                        <a href="{% url 'edit_drugs' %}" class="btn btn-primary">Przedjź do bazy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Twoje konto</h5>
+                        <p class="card-text">Zobacz swoje dane, zmień hasło, zaktualizuj dane osobowe.</p>
+                        <a href="{% url 'account' %}" class="btn btn-primary">Przejdź do konta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+
+{% endblock %}

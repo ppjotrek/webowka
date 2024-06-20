@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Leczenie pacjenta{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Leczenie pacjenta</h1>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="patient">Wybierz pacjenta:</label>
+                <select class="form-control" id="patient" name="patient">
+                    {% for patient in patients %}
+                        <option value="{{ patient.id }}">{{ patient.name }} {{ patient.surname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="drug">Wybierz lek:</label>
+                <select class="form-control" id="drug" name="drug">
+                    {% for drug in drugs %}
+                        <option value="{{ drug.id }}">{{ drug.drug_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dose">Dawka:</label>
+                <input type="text" class="form-control" id="dose" name="dose" required>
+            </div>
+            <div class="form-group">
+                <label for="frequency">Częstotliwość (wskazana dawka na dzień):</label>
+                <input type="text" class="form-control" id="frequency" name="frequency" required>
+            </div>
+            <div class="form-group">
+                <label for="duration">Czas trwania:</label>
+                <input type="text" class="form-control" id="duration" name="duration" required>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary" id="submitButton">Zapisz</button>
+        </form>
+    </div>
+{% endblock %}

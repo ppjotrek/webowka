@@ -1,32 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block content %}
     <form method="POST" action="">
         {% csrf_token %}
         <br>
         {{ form.username.label }}
+        <br>
         {{ form.username }}
         <br>
         {{ form.email.label }}
+        <br>
         {{ form.email }}
         <br>
         {{ form.password1.label }}
+        <br>
         {{ form.password1 }}
         <br>
         {{ form.password2.label }}
+        <br>
         {{ form.password2 }}
+        <br>
         <br>
         <input type="submit" name="Create User">
         <br>
-        Already have an account?
-        <a href="../login/">Sign in!</a>
+        <br>
+        Masz już konto?
+        <a href="../login/">Zaloguj się!</a>
         <br>
         {{ form.errors }}
     </form>
-</body>
-</html>
+{% endblock %}

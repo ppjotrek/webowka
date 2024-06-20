@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Usuń lek{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <h1>Usuń lek</h1>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <p>Czy na pewno chcesz usunąć lek {{ drug.drug_name }}?</p>
+            <button type="submit" class="btn btn-danger">Usuń</button>
+        </form>
+    </div>
+
+{% endblock %}

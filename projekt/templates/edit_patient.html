@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Edytuj pacjenta{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <h1>Edytuj pacjenta</h1>
+        <h3>Pacjent: {{ patient.name }} {{ patient.surname }}</h3>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Imię:</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ patient.name }}">
+            </div>
+            <div class="form-group">
+                <label for="surname">Nazwisko:</label>
+                <input type="text" class="form-control" id="surname" name="surname" value="{{ patient.surname }}">
+            </div>
+            <div class="form-group">
+                <label for="pesel">PESEL:</label>
+                <input type="text" class="form-control" id="pesel" name="pesel" value="{{ patient.pesel }}">
+            </div>
+            <div class="form-group">
+                <label for="birth_date">Data urodzenia:</label>
+                <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ patient.birth_date }}">
+            </div>
+            <div class="form-group">
+                <label for="contact">Kontakt:</label>
+                <input type="text" class="form-control" id="contact" name="contact" value="{{ patient.contact }}">
+            </div>
+            <div class="form-group">
+                <label for="email">Alergie na substancje czynne:</label>
+                <input type="text" class="form-control" id="allergies_for_active" name="allergies_for_active" value="{{ patient.allergies_for_active }}">
+            </div>
+            <div class="form-group">
+                <label for="allergies_for_active">Pozostałe alergie:</label>
+                <input type="text" class="form-control" id="allergies_for_added" name="allergies_for_added" value="{{ patient.allergies_for_added }}">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Szczegóły leku{% endblock %}
+
+{% block content %}
+
+    <h3>Informacje o leku</h3>
+    <hr>
+    <p><b>Nazwa: </b>{{ drug.drug_name }}</p>
+    <p><b>Substancja aktywna: </b>{{ drug.main_active_substance }}</p>
+    <p><b>Pozostałe substancje: </b>{{ drug.added_substances_list }}</p>
+    <p><b>Opis: </b>{{ drug.description }}</p>
+    <div class="link-button">
+        <i class="fa-solid fa-arrow-left"></i>
+        <a href="{% url 'list' %}">Powrót do listy leków</a>
+    </div>
+    <div class="link-button">
+        <i class="fa-solid fa-trash"></i>
+        <a href="{% url 'delete_drug' drug.id %}">Usuń lek</a>
+    </div>
+{% endblock %}

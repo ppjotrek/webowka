@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Pacjent{% endblock %}
+
+{% block content %}
+
+    <h3>Informacje o pacjencie</h3>
+    <hr>
+    <p><b>Imię: </b>{{ patient.name }}</p>
+    <p><b>Nazwisko: </b>{{ patient.surname }}</p>
+    <p><b>Wiek: </b>{{ patient.age }}</p>
+    <p><b>Zażywane leki: </b>{{ patient.get_current_drugs }}</p>
+    <p><b>Alergie pacjenta: </b>{{ patient.get_allergies }}</p>
+    <p><b>Historia leczenia: </b>{{ patient.treatment_plan }}</p>
+    <div class="link-button">
+        <i class="fa-solid fa-arrow-left"></i>
+        <a href="{% url 'patients' %}">Powrót do listy pacjentów</a>
+    </div>
+    <div class="link-button">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <a href="{% url 'edit_patient' patient.id %}">Edytuj</a>
+    </div>
+    <div class="link-button">
+        <i class="fa-solid fa-trash"></i>
+        <a href="{% url 'delete_patient' patient.id %}">Usuń</a>
+    </div>
+
+{% endblock %}

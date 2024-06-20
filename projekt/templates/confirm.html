@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Potwierdzenie{% endblock %}
+
+{% block content %}
+    <h3>Pacjent {{ patient.name }} {{ patient.surname }}</h3>
+    <hr>
+    <p>Pacjent może być uczulony na poniższe substancje:</p>
+    <p>{{ patient.get_allergies }}</p>
+    <p>W związku z powyższym, leczenie pacjenta powinno być prowadzone z zachowaniem szczególnej ostrożności.</p>
+    <br>
+    <h5>Czy na pewno chcesz zlecić pacjentowi przyjmowanie leku, na który może być uczulony?</h5>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <label for="confirm-yes">Tak</label>
+        <input type="radio" name="confirm?" id="confirm-yes" value="Tak">
+        <br>
+        <label for="confirm-no">Nie</label>
+        <input type="radio" name="confirm?" id="confirm-no" value="Nie">
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Zatwierdź</button>
+    </form>
+{% endblock %}
